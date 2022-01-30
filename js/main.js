@@ -1,5 +1,5 @@
 //---------------------------------------------------------------------------------------------------------------
-//                   Primera Entrega de Proyecto Final - RODOLFO GONZALEZ
+//                   Primera Pre-Entrega de Proyecto Final - RODOLFO GONZALEZ
 //--Proceso de compra, buscar por Nombre, categoria de producto y ordenar productos segun orden solicitada ------
 
 //----- Objeto con las propiedades de los productos
@@ -155,22 +155,22 @@ function ordenar() {
 }
 
 function ordenarPorNombre() {
-    console.log(productos.sort((a, b) => a.nombre < b.nombre ? -1 : 1));
-    alert('Seleccionó ordenar por nombre');
+    console.log(productos.sort((a, b) => a.nombre < b.nombre ? -1 : 1)); //--- reordena el array segun el nombre por orden alfabetico
+    alert('Seleccionó ordenar por nombre por orden Alfabetico');
 }
 
 function ordenarPorPrecio() {
-    console.log(productos.sort((a, b) => a.precio < b.precio ? -1 : 1));
-    alert('Seleccionó ordenar por Precio');
+    console.log(productos.sort((a, b) => a.precio < b.precio ? -1 : 1)); //--- reordena el array por precio de menor a mayor precio
+    alert('Seleccionó ordenar por Precio de menor a mayor precio');
 }
 
 function ordenarPorCategoria() {
-    console.log(productos.sort((a, b) => a.categoria < b.categoria ? -1 : 1));
-    alert('Seleccionó ordenar por Categoria');
+    console.log(productos.sort((a, b) => a.categoria < b.categoria ? -1 : 1)); //--- reordena el array segun la categoria por orden alfabetico
+    alert('Seleccionó ordenar por Categoria por orden Alfabetico');
 }
 
 function ordenarPorAnio() {
-    console.log(productos.sort((a, b) => a.anioPublicacion < b.anioPublicacion ? -1 : 1));
+    console.log(productos.sort((a, b) => a.anioPublicacion < b.anioPublicacion ? -1 : 1)); //--- reordena el array por año de publicación desde el mas viejo al mas nuevo
     alert('Seleccionó ordenar por Año de Publicación');
 }
 
