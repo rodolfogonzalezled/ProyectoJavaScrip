@@ -7,11 +7,9 @@
         padding-left: 3.5rem; }
       .header__logo:hover {
         animation: pulse;
-        /* nombre de animacion */
-        animation-duration: 3s;
-        /* duracion de animacion */ }
-  
-  .menu-end {
+        animation-duration: 3s;}
+
+    .menu-end {
     justify-content: end; }
 
     .home {
@@ -63,12 +61,12 @@
     width: 100%; }
 
 /* ------------------ estilos de inicio---------------*/
-.conectivity {
+.consolas {
     background-color: rgba(255, 255, 255, 0.99);
     padding: 5% 0; }
-    .conectivity i {
+    .consolas i {
       font-size: 5rem; }
-      .conectivity i:hover {
+      .consolas i:hover {
         transform: scale(1.5); }
 
 /* -------------- estilos generales ------------*/
@@ -93,7 +91,7 @@ a {
     display: flex;
     justify-content: space-evenly; }
   
-  .flex-around, .conectivity {
+  .flex-around, .consolas {
     display: flex;
     justify-content: space-around; }
 
@@ -133,6 +131,6 @@ a {
       font-size: small;
       padding-bottom: 5%; }
 
-      .ocultar {
+    .ocultar {
         display: none;
     }
