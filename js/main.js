@@ -1,16 +1,16 @@
-//---------------------------------------------------------------------------------------------------------------
-//                   Primera Pre-Entrega de Proyecto Final - RODOLFO GONZALEZ
-//--Proceso de compra, buscar por Nombre, categoria de producto y ordenar productos segun orden solicitada ------
-
-//----- Objeto con las propiedades de los productos
+// //---------------------------------------------------------------------------------------------------------------
+// //                   Desafio Complementario - RODOLFO GONZALEZ
+// //---------------------------------------------------------------------------------------------------------------
+// //----- Objeto con las propiedades de los productos
 class Producto {
-    constructor(id, nombre, precio, categoria, anioPublicacion, idioma, cantidad) {
+    constructor(id, nombre, precio, categoria, anioPublicacion, idioma, imagen, cantidad) {
         this.id = id;
         this.nombre = nombre;
         this.precio = precio;
         this.categoria = categoria;
         this.anioPublicacion = anioPublicacion;
         this.idioma = idioma;
+        this.imagen = imagen;
         this.cantidad = cantidad
     }
 
@@ -18,76 +18,55 @@ class Producto {
         this.cantidad--; //Se decrementa de 1 en 1 la cantidad
     }
 }
-//----- Array principal de productos
+// //----- Array principal de productos
 const productos = [
-    new Producto(1, 'NBA2K21', 5000, 'Deportes', 2021, 'Español', 2),
-    new Producto(2, 'FIFA22', 8000, 'Deportes', 2022, 'Español', 5),
-    new Producto(3, 'Crash Ctr', 7000, 'Conduccion', 2020, 'Español', 4),
-    new Producto(4, 'Sims 4', 2000, 'Simulacion', 2019, 'Español', 3),
-    new Producto(5, 'Need for Speed', 3000, 'Conduccion', 2022, 'Español', 1),
-    new Producto(6, 'Mortal Kombat 11', 4000, 'Combate', 2021, 'Inglés', 5),
-    new Producto(7, 'Uncharted', 6000, 'Accion', 2019, 'Español', 5),
-    new Producto(8, 'Horizon II', 10000, 'Accion', 2022, 'Inglés', 2),
+    new Producto(1, 'NBA2K22', 5000, 'deportes', 2022, 'Español', './images/nba-2k22.jpg', 2),
+    new Producto(2, 'FIFA22', 8000, 'deportes', 2022, 'Español', './images/fifa22.jpg', 5),
+    new Producto(3, 'Crash Ctr', 7000, 'conduccion', 2020, 'Español', './images/crash-ctr.jpg', 4),
+    new Producto(4, 'Sims 4', 2000, 'simulacion', 2019, 'Español', './images/sims4.jpg', 3),
+    new Producto(5, 'Need for Speed', 3000, 'conduccion', 2022, 'Español', './images/need-for-speed.jpg', 8),
+    new Producto(6, 'Mortal Kombat 11', 2500, 'combate', 2021, 'Inglés', './images/mortal-kombat.jpg', 5),
+    new Producto(7, 'Uncharted', 2500, 'accion', 2019, 'Español', './images/uncharted4.jpg', 5),
+    new Producto(8, 'Horizon II', 10000, 'accion', 2022, 'Inglés', './images/horizon.jpg', 2),
+    new Producto(9, 'Far Cry 6', 9000, 'accion', 2022, 'Español', './images/farcry6.jpg', 1),
+    new Producto(10, 'Resident Evil 3', 5500, 'accion', 2021, 'Inglés', './images/resident-evil-3.jpg', 5),
+    new Producto(11, 'Spiderman', 4500, 'accion', 2020, 'Español', './images/spider-man.jpg', 5),
+    new Producto(12, 'It Takes Two', 7000, 'simulacion', 2021, 'Inglés', './images/it-takes-two.jpg', 2),
 ];
 
 const carrito = [];
 let total = 0;
-let cantidad = 0;
-let itemsCarrito = 0;
-let seguirAgregando = false;
+crearCardProductos(productos);
 
-//-------- Menu principal de opciones ---------------------------------------------------
-function menuPrincipal() {
-    const opcionSeleccionada = parseInt(prompt(`Seleccione la opción que desea ejecutar:
-    1. Agregar al carrito
-    2. Buscar por nombre
-    3. Buscar por categoria
-    4. Ordenar`));
-    switch (opcionSeleccionada) {
-        case 1:
-            agregarCarrito();
-            break;
-        case 2:
-            buscarPorNombre();
-            break;
-        case 3:
-            buscarPorCategoria();
-            break;
-        case 4:
-            ordenar();
-            break;
-        default:
-            break;
-    }
-}
-//-------------- caso 1 - comprar -------------------------------------------------------------------
+//-------------- Agregar al Carrito -------------------------------------------------------------------
 
 function agregarCarrito() {
-    do {
-        const productoAComprar = parseInt(prompt(`Ingrese el id del juego que desea comprar:
-        Recuerde que comprando más de 2 unidades tiene un 10% de descuento y con mas de 5 obtienes un 20% de descuento
-        Actualmente tiene en su carrito ${carrito.length} unidad(es)`));
-        const productoSeleccionado = productos.find(el => el.id === productoAComprar);
-        if (productoSeleccionado === undefined) {
-            alert('La opcion que ingreso no existe');
-        } else {
+    const productoSeleccionado = this.producto;
+    if (productoSeleccionado.cantidad >= 1) {
+        carrito.push(productoSeleccionado);
+        productoSeleccionado.productoComprado();
+        console.log(carrito);
+        let mostrarCarrito = document.getElementById("listaCarrito");
+        mostrarCarrito.innerHTML = "";
+        for (const producto of carrito) {
+            let li = document.createElement("li");
+            li.textContent = producto.nombre;    
+            mostrarCarrito.appendChild(li);   //--------- Mostrar carrito ----------------------------
+        }
 
-            if (productoSeleccionado.cantidad >= 1) {
-                carrito.push(productoSeleccionado);
-                productoSeleccionado.productoComprado();
-            } else {
-                console.log('Producto agotado: ', productoSeleccionado);
-                alert('Lo sentimos, producto agotado');
-            }
-        };
+    } else {
+        console.log('Producto agotado: ', productoSeleccionado);
+        alert('Lo sentimos, producto agotado');
+        this.textContent = 'Agotado';
+        this.disabled = true;
+        console.log(this);
+    }
 
-        seguirAgregando = confirm('¿Desea agregar más productos?');
-
-    } while (seguirAgregando);
-    console.log('Gracias por su compra, los elementos seleccionados para su compra fueron: ', carrito);
-    calcularTotal();
+    // console.log('Gracias por su compra, los elementos seleccionados para su compra fueron: ', carrito);
+    // calcularTotal();
 }
 
+//------- Calcular el total ----------------------------------------------------------------------
 function calcularTotal() {
     if (carrito.length > 0) {
         total = carrito.reduce((acc, el) => acc + el.precio, 0); //Suma todos los precios de los elementos seleccionados
@@ -106,47 +85,41 @@ function calcularTotal() {
     }
 }
 
-menuPrincipal();
 
-//-------------- caso 2 - Buscar por nombre -------------------------------------------------------------
+// //-------------- Buscar por nombre -------------------------------------------------------------
 
-function buscarPorNombre() {
-    const nombreIngresado = prompt('Ingrese el nombre del juego que desea buscar');
+let inputBuscarNombre = document.getElementById("buscarNombre");
+inputBuscarNombre.addEventListener('keyup', buscarProducto);
 
-    const productosEncontrados = productos.filter(el => el.nombre.toUpperCase().includes(nombreIngresado.toUpperCase()));
-    console.log(`Se encontró ${productosEncontrados.length} concidencia(s)`, productosEncontrados);
-    alert('No se encontraron coincidencias para el nombre del juego que ingresó');
+function buscarProducto() {
+    const productosEncontrados = productos.filter(el => el.nombre.toUpperCase().includes(inputBuscarNombre.value.toUpperCase()));
+    crearCardProductos(productosEncontrados);
+    // console.log(`Se encontró ${productosEncontrados.length} concidencia(s)`, productosEncontrados);
 }
 
-//-------------- caso 3 - Buscar por categoria -----------------------------------------------------------
+// //-------------- filtrar por categoria -----------------------------------------------------------
+let categoria = document.getElementById("categoria");
+categoria.addEventListener('change', filtrarCategoria);
 
-function buscarPorCategoria() {
-    const categoriaIngresada = prompt('Ingrese la categoría del juego que desea buscar. \nEjemplo: Deportes, Accion, Conduccion, Simulacion, Combate');
-
-    const productosEncontrados = productos.filter(el => el.categoria.toUpperCase() == categoriaIngresada.toUpperCase());
-    console.log(`Se encontró ${productosEncontrados.length} concidencia(s)`, productosEncontrados);
-    alert('Asegurese de escribir correctamente la categoria que ingresó');
+function filtrarCategoria() {
+    const productosEncontrados = productos.filter(el => el.categoria == categoria.value);
+    crearCardProductos(productosEncontrados);
+    //console.log(`Se encontró ${productosEncontrados.length} concidencia(s)`, productosEncontrados);
 }
 
-//-------------- caso 4 - Ordenar ------------------------------------------------------------------------
+// //-------------- caso 4 - Ordenar ------------------------------------------------------------------------
+let selectOrdenar = document.getElementById("ordenar");
+selectOrdenar.addEventListener("change", ordenar);
 
 function ordenar() {
-    const ordenarProductos = parseInt(prompt(`Seleccione como desea ordenar los productos:
-    1. Nombre
-    2. Precio
-    3. Categoria
-    4. Año de Publicación`));
-    switch (ordenarProductos) {
-        case 1:
+    switch (selectOrdenar.value) {
+        case "nombre":
             ordenarPorNombre();
             break;
-        case 2:
+        case "precio":
             ordenarPorPrecio();
             break;
-        case 3:
-            ordenarPorCategoria();
-            break;
-        case 4:
+        case "anio":
             ordenarPorAnio();
             break;
         default:
@@ -155,23 +128,102 @@ function ordenar() {
 }
 
 function ordenarPorNombre() {
-    console.log(productos.sort((a, b) => a.nombre < b.nombre ? -1 : 1)); //--- reordena el array segun el nombre por orden alfabetico
-    alert('Seleccionó ordenar por nombre por orden Alfabetico');
+    const productosOrdenados = productos.sort((a, b) => a.nombre < b.nombre ? -1 : 1); //--- reordena el array segun el nombre por orden alfabetico
+    crearCardProductos(productosOrdenados);
 }
 
 function ordenarPorPrecio() {
-    console.log(productos.sort((a, b) => a.precio < b.precio ? -1 : 1)); //--- reordena el array por precio de menor a mayor precio
-    alert('Seleccionó ordenar por Precio de menor a mayor precio');
-}
-
-function ordenarPorCategoria() {
-    console.log(productos.sort((a, b) => a.categoria < b.categoria ? -1 : 1)); //--- reordena el array segun la categoria por orden alfabetico
-    alert('Seleccionó ordenar por Categoria por orden Alfabetico');
+    const productosOrdenados = productos.sort((a, b) => a.precio < b.precio ? -1 : 1); //--- reordena el array por precio de menor a mayor precio
+    crearCardProductos(productosOrdenados);
 }
 
 function ordenarPorAnio() {
-    console.log(productos.sort((a, b) => a.anioPublicacion < b.anioPublicacion ? -1 : 1)); //--- reordena el array por año de publicación desde el mas viejo al mas nuevo
-    alert('Seleccionó ordenar por Año de Publicación');
+    const productosOrdenados = productos.sort((a, b) => a.anioPublicacion < b.anioPublicacion ? -1 : 1); //--- reordena el array por año de publicación desde el mas viejo al mas nuevo
+    crearCardProductos(productosOrdenados);
 }
 
-//------------------------------------------------------------------------------------------
+// function ordenarPorCategoria() {
+//     console.log(productos.sort((a, b) => a.categoria < b.categoria ? -1 : 1)); //--- reordena el array segun la categoria por orden alfabetico
+//     alert('Seleccionó ordenar por Categoria por orden Alfabetico');
+// }
+
+
+//---------- Crear el HTML de cada uno de los cards de los productos ----------------------------
+function crearCardProductos(productos) {
+    const padre = document.getElementById('productos');
+    padre.innerHTML = '';
+    for (const producto of productos) {
+
+        let divContenedor = document.createElement("div");
+        divContenedor.classList.add("col-md-6", "col-lg-4");
+
+        let divCard = document.createElement("div");
+        divCard.classList.add("card", "products");
+
+        let img = document.createElement("img");
+        img.classList.add("products__img");
+        img.src = producto.imagen;
+
+        let divCardBody = document.createElement("div");
+        divCardBody.classList.add("card-body", "products__info");
+
+        let titulo = document.createElement("h3");
+        titulo.classList.add("card-title");
+        titulo.textContent = producto.nombre;
+
+        let divInfoProducto = document.createElement("div");
+        divInfoProducto.classList.add("card-text");
+
+        let precio = document.createElement("p");
+        precio.textContent = `Precio: $ ${producto.precio}`;
+
+        let categoria = document.createElement("p");
+        categoria.textContent = `Categoria: ${producto.categoria}`;
+
+        let anioPublicacion = document.createElement("p");
+        anioPublicacion.textContent = `Año de publicacion: ${producto.anioPublicacion}`;
+
+        let divBtn = document.createElement("div");
+        divBtn.classList.add("d-grid", "col-6", "mx-auto");
+
+        let btn = document.createElement("button");
+        btn.classList.add("btn", "btn-outline-primary");
+        btn.type = 'button';
+        btn.textContent = 'Agregar al carrrito';
+        btn.addEventListener('click', agregarCarrito);
+        btn.producto = producto;
+
+        divContenedor.appendChild(divCard);
+        divCard.appendChild(img);
+        divCard.appendChild(divCardBody);
+        divCardBody.appendChild(titulo);
+        divCardBody.appendChild(divInfoProducto);
+        divInfoProducto.appendChild(precio);
+        divInfoProducto.appendChild(categoria);
+        divInfoProducto.appendChild(anioPublicacion);
+        divCardBody.appendChild(divBtn);
+        divBtn.appendChild(btn);
+        padre.appendChild(divContenedor);
+
+
+
+        // <div class="col-md-6 col-lg-4">
+        //     <div class="card products">
+        //         <img class="products__img" src="./images/spider-man.jpg" alt="spiderman">
+        //         <div class="card-body products__info">
+        //             <h3 class="card-title">Spiderman</h3>
+        //             <div cla>
+        //                 <p>Precio: $ 4.000</p>
+        //                 <p>Categoria: Acción</p>
+        //                 <p>Año de Publicación: 2020</p>
+        //             </div>
+        //             <div class="d-grid col-6 mx-auto">
+        //                 <a href="#" class="btn btn-outline-primary">Añadir al carrito</a>
+        //             </div>
+        //         </div>
+        //     </div>
+        // </div>
+
+
+    }
+}

@@ -1,4 +1,138 @@
-.home {
+/* ------------------ estilos del header---------------*/
+.header {
+    font-size: larger;
+    background-color: #4b6587; }
+    .header__logo {
+        font-size: 4rem;
+        padding-left: 3.5rem; }
+      .header__logo:hover {
+        animation: pulse;
+        /* nombre de animacion */
+        animation-duration: 3s;
+        /* duracion de animacion */ }
+  
+  .menu-end {
+    justify-content: end; }
+
+    .home {
     height: 100%;
     text-align: center;
 }
+
+/* ----------------- Products ---------------------*/
+.products {
+    border-radius: 5%;
+    text-align: center;
+    margin-bottom: 10%;
+    height: 95%; }
+    .products__info {
+      border-top: outset; }
+    .products__img {
+      width: 80%;
+      align-self: center;
+      padding: 5% 0; }
+      .products__img:hover {
+        transform: scale(1.1); }
+  
+  .card-title {
+    font-weight: bolder; }
+  
+  .card-text {
+    margin: 7%;
+    text-align: justify;
+    line-height: 0;
+    font-size: 0.8rem;
+}
+
+/* -------------------- Contact -----------------*/
+.section-contact {
+    padding-bottom: 3%; }
+  
+  .contact {
+    background-color: rgba(145, 140, 136, 0.2);
+    border-radius: 1rem;
+    padding: 3% 0; }
+    .contact__reason-form {
+      width: 100%; }
+    .contact__map {
+      display: flex;
+      text-align: center;
+      flex-direction: column;
+      justify-content: space-between; }
+  .map {
+    width: 100%; }
+
+/* ------------------ estilos de inicio---------------*/
+.conectivity {
+    background-color: rgba(255, 255, 255, 0.99);
+    padding: 5% 0; }
+    .conectivity i {
+      font-size: 5rem; }
+      .conectivity i:hover {
+        transform: scale(1.5); }
+
+/* -------------- estilos generales ------------*/
+a {
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.99); 
+}
+  
+  .title-section {
+    color: rgba(255, 255, 255, 0.99);
+    font-size: xx-large;
+    text-shadow: -2px 0 black, 1px 0 black, 0 1px black, 0 -1px black;
+    text-align: center; }
+  
+  .sections {
+    margin: 3% 0; }
+  
+  .body {
+    background-color: rgba(145, 140, 136, 0.25); }
+  
+  .flex-evenly, .services, .contact__reason-form, .contact__buttons {
+    display: flex;
+    justify-content: space-evenly; }
+  
+  .flex-around, .conectivity {
+    display: flex;
+    justify-content: space-around; }
+
+/* --------------- estilos del footer------------*/
+.footer {
+    background-color: #4b6587;
+    padding: 1rem 0;
+    color: rgba(255, 255, 255, 0.99);
+    text-align: center; }
+    .footer__row {
+      width: 100%;
+      display: flex;
+      justify-content: space-around; }
+    .footer__form {
+      display: flex;
+      flex-direction: column; }
+      .footer__form input {
+        width: 100%;
+        height: 1.5rem;
+        margin-bottom: 5%; }
+    .footer__social {
+      display: flex;
+      text-align: center;
+      width: 50%;
+      list-style: none;
+      justify-content: flex-end;
+      font-size: 3em; }
+      .footer__social a {
+        margin-left: 1.5rem;
+        color: white; }
+        .footer__social a:hover {
+          color: rgba(255, 255, 255, 0.55); }
+    .footer__firm {
+      padding-top: 3%; }
+    .footer .label-submit {
+      width: 100%;
+      font-size: small;
+      padding-bottom: 5%; }
+
+      .ocultar {
+        display: none;
+    }
