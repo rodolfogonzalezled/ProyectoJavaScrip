@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <!----------------------   inicio del body --------------------------------------------->
+
 <body class="body">
     <header class="header">
         <!-- Menu de Navegación -->
@@ -36,7 +37,11 @@
                             <a class="nav-link" href="#juegos"> Juegos </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link position-relative" href="#carrito"> Carrito </a>
+                            <a class="nav-link position-relative" id="btnAbrirCarrito"> Carrito
+                                <span id="contadorCarrito"
+                                    class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"></span>
+                            </a>
+
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="pages/contacto.html">Contacto</a>
@@ -49,68 +54,86 @@
 
     <!--------------------- Cuerpo de Inicio --------------------------------------------->
 
-    <div class="container">
-        <div class="mb-3">
-            <label for="formGroupExampleInput2" class="form-label">Buscar Juegos por Nombre:</label>
-            <input type="text" class="form-control" id="buscarNombre" placeholder="Ingrese un nombre">
+    <div class="container mt-5">
+        <div class="row">
+            <div class="mb-3 col-sm-12 col-lg-4">
+                <label for="formGroupExampleInput2" class="form-label">Buscar Juegos por Nombre:</label>
+                <input type="text" class="form-control" id="buscarNombre" placeholder="Ingrese un nombre">
+            </div>
+
+            <div class="mb-3 col-md-12 col-lg-4">
+                <label class="form-label">Ordenar Juegos por:</label>
+                <select id="ordenar" class="form-select">
+                    <option selected>Seleccione una opción</option>
+                    <option value="nombre">Nombre</option>
+                    <option value="precio">Precio</option>
+                    <option value="anio">Año de Publicación</option>
+                </select>
+            </div>
+
+            <div class="mb-3 col-sm-12 col-lg-4">
+                <label class="form-label">Buscar Juegos por Categoria:</label>
+                <select id="categoria" class="form-select">
+                    <option selected>Seleccione una categoria</option>
+                    <option value="deportes">Deportes</option>
+                    <option value="accion">Acción</option>
+                    <option value="conduccion">Conducción</option>
+                    <option value="simulacion">Simulación</option>
+                    <option value="combate">Combate</option>
+                </select>
+            </div>
         </div>
-    
-        <div class="mb-3">
-            <label class="form-label">Ordenar Juegos por:</label>
-            <select id="ordenar" class="form-select">
-                <option selected>Seleccione una opción</option>
-                <option value="nombre">Nombre</option>
-                <option value="precio">Precio</option>
-                <option value="anio">Año de Publicación</option>
-            </select>
-        </div>
-    
-        <div class="mb-3">
-            <label class="form-label">Buscar Juegos por Categoria:</label>
-            <select id="categoria" class="form-select">
-                <option selected>Seleccione una categoria</option>
-                <option value="deportes">Deportes</option>
-                <option value="accion">Acción</option>
-                <option value="conduccion">Conducción</option>
-                <option value="simulacion">Simulación</option>
-                <option value="combate">Combate</option>
-            </select>
-        </div>
-                
-        <p class="home"> Recuerde que comprando más de 2 unidades tiene un 10% de descuento y con mas de 5 obtienes un 20% de descuento</p>
+    </div>
+
+    <p class="home"> Recuerde que comprando más de 2 unidades tiene un 10% de descuento y con mas de 5 obtienes un 20%
+        de descuento</p>
+
+    <!--------------------- separador ------------------------->
+    <div class="consolas sections">
+        <i class="bi bi-xbox"></i>
+        <i class="bi bi-playstation"></i>
+        <i class="bi bi-nintendo-switch"></i>
     </div>
 
     <!------------------- Juegos --------------------------------->
     <section id="juegos">
         <h1 class="title-section sections"> Juegos </h1>
-        <!-- contenedor grid -->
         <div class="container">
             <div class="row" id="productos">
 
             </div>
         </div>
     </section>
-    <!--------------------- separador ------------------------->    
-    <div class="consolas sections">
-        <i class="bi bi-xbox"></i>
-        <i class="bi bi-playstation"></i>
-        <i class="bi bi-nintendo-switch"></i>
-    </div>
+
     <!------------------- Carrito -------------------------------->
-    <section id="carrito" class="container sections" style="padding-left: 80px">
-        <h1 class="title-section"> Carrito </h1>
-        <div>
-            <p>Los elementos seleccionados para su compra son:</p>
-            <ul id="listaCarrito">
-            </ul>
+    <div id="modalContenedor" class="modal-contenedor">
+        <div id="modalCarrito" class="modal-carrito">
+            <div class="d-flex justify-content-between">
+                <h2> Carrito de Compras </h2>
+                <button id="btnCerrarCarrito" type="button" class="btn-close pt-4"></button>
+            </div>
+            <div id="carritoContenedor">
+
+            </div>
+            <p class="flex-row flex-r-end">Sub-total: $<strong id="subtotal"> </strong> </p>
+            <p id="descuento" class="ocultar">Descuento: </p>
+            <p class="flex-row flex-r-end">Total: $<b id="total"></b></p>
+            <div class="col-12 mx-auto btn-pagar">
+                <button id="btnAgregarCarrito${producto.id}" type="button"
+                    class="btn btn-outline-primary">Pagar</button>
+            </div>
         </div>
-        <button id="pagar" type="button" class="btn btn-sm btn-primary">Comprar</button>
-    </section>
+    </div>
+
     <!------------------- Scripts -------------------------------->
+    <script src="./js/productos.js"></script>
+    <script src="./js/carrito.js"></script>
     <script src="./js/main.js"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
     </script>
+
     <!------------------------ Pie de Pagina ----------------------->
     <footer class="footer">
         <div class="footer__row">
