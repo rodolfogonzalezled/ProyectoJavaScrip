@@ -24,7 +24,7 @@ const productos = [
     new Producto(6, 'Crash Ctr', 7000, 'conduccion', 2020, 'Español', './images/crash-ctr.jpg', 4),
     new Producto(7, 'Uncharted', 2500, 'accion', 2019, 'Español', './images/uncharted4.jpg', 5),
     new Producto(8, 'Horizon II', 10000, 'accion', 2022, 'Inglés', './images/horizon.jpg', 2),
-    new Producto(9, 'Far Cry 6', 9000, 'accion', 2022, 'Español', './images/farcry6.jpg', 1),
+    new Producto(9, 'Far Cry 6', 9000, 'accion', 2022, 'Español', './images/farcry6.jpg', 5),
     new Producto(10, 'Mortal Kombat 11', 2500, 'combate', 2021, 'Inglés', './images/mortal-kombat.jpg', 5),
     new Producto(11, 'Spiderman', 4500, 'accion', 2020, 'Español', './images/spider-man.jpg', 5),
     new Producto(12, 'It Takes Two', 7000, 'simulacion', 2021, 'Inglés', './images/it-takes-two.jpg', 2),

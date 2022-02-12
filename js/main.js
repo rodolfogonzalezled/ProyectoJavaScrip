@@ -42,7 +42,7 @@ function ordenar() {
 }
 
 function ordenarPorNombre() {
-    const productosOrdenados = productos.sort((a, b) => a.nombre < b.nombre ? -1 : 1); //--- reordena el array segun el nombre por orden alfabetico
+    const productosOrdenados = productos.sort((a, b) => a.nombre.toUpperCase() < b.nombre.toUpperCase() ? -1 : 1); //--- reordena el array segun el nombre por orden alfabetico
     cargarCardProducto(productosOrdenados);
 }
 
