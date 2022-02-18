@@ -33,12 +33,12 @@ export default function agregarCarrito(idProducto) {
         let productoRepetido = carrito.find(el => el.id == idProducto);
         if (productoRepetido) {
             productoRepetido.cantidad++;
-            ajustarStock(productoRepetido);
+            ajusteNegativoStock(productoRepetido);
             actualizarCantidad(productoRepetido);
         } else {
             carrito.push(productoSeleccionado);
             actualizarContadorCarrito();
-            ajustarStock(productoSeleccionado);
+            ajusteNegativoStock(productoSeleccionado);
             carritoContenedor.innerHTML = "";
             for (const producto of carrito) {
                 let divContenedor = document.createElement("div");
@@ -57,6 +57,8 @@ export default function agregarCarrito(idProducto) {
                 btnBorrarProducto.addEventListener('click', () => {
                     producto.cantidad--;
                     actualizarCantidad(producto);
+                    ajustePositivoStock(producto);
+
                     if (producto.cantidad == 0) {
                         btnBorrarProducto.parentElement.remove();
                         carrito = carrito.filter(el => el.id != producto.id);
@@ -74,7 +76,7 @@ export default function agregarCarrito(idProducto) {
         let btnAgregarCarrito = document.getElementById(`btnAgregarCarrito${idProducto}`)
         btnAgregarCarrito.textContent = 'Agotado';
         btnAgregarCarrito.disabled = true;
-    }
+    } 
 }
 
 //------- Calcular el total ----------------------------------------------------------------------
@@ -103,8 +105,15 @@ function actualizarContadorCarrito() {
     ;
 }
 
-const ajustarStock = (producto) => {
+const ajusteNegativoStock = (producto) => {
     producto.stock--;
+}
+
+const ajustePositivoStock = (producto) => {
+    producto.stock++;
+    let btnAgregarCarrito = document.getElementById(`btnAgregarCarrito${producto.id}`)
+    btnAgregarCarrito.textContent = 'Añadir al carrito';
+    btnAgregarCarrito.disabled = false;
 }
 
 const actualizarCantidad = (producto) => {

@@ -8,7 +8,7 @@ const productos = [
         anioPublicacion: 2022,
         idioma: 'Español',
         imagen: './public/images/nba-2k22.jpg',
-        stock: 2,
+        stock: 3,
         cantidad: 1
     },
     {
@@ -85,7 +85,7 @@ const productos = [
         anioPublicacion: 2020,
         idioma: 'Inglés',
         imagen: './public/images/horizon.jpg',
-        stock: 2,
+        stock: 4,
         cantidad: 1
     },
     {
@@ -111,18 +111,18 @@ const productos = [
         cantidad: 1
     },
     {
-        id: 10,
+        id: 11,
         nombre: 'Spiderman',
         precio: 4500,
         categoria: 'accion',
         anioPublicacion: 2021,
         idioma: 'Español',
         imagen: './public/images/spider-man.jpg',
-        stock: 5,
+        stock: 7,
         cantidad: 1
     },
     {
-        id: 10,
+        id: 12,
         nombre: 'It Takes Two',
         precio: 7000,
         categoria: 'simulacion',
