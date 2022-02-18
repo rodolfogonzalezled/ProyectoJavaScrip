@@ -1,6 +1,9 @@
 // //---------------------------------------------------------------------------------------------------------------
-// //                   Desafio Complementario - RODOLFO GONZALEZ
+// //                   Desafio - RODOLFO GONZALEZ
 // //---------------------------------------------------------------------------------------------------------------
+import agregarCarrito from "./components/cart/carrito.js";
+import { productos } from "./data/productos.js";
+
 let inputBuscarNombre = document.getElementById("buscarNombre");
 let categoria = document.getElementById("categoria");
 let selectOrdenar = document.getElementById("ordenar");
@@ -10,7 +13,11 @@ inputBuscarNombre.addEventListener('keyup', buscarProducto);
 categoria.addEventListener('change', filtrarCategoria);
 selectOrdenar.addEventListener("change", ordenar);
 
+const algo =  [{id: 1, nombre:'vero'}, {id:2, nombre:'fito'}];
+debugger;
+console.log(productos);
 cargarCardProducto(productos);
+
 
 //-------------- Buscar por nombre -------------------------------------------------------------
 function buscarProducto() {
@@ -59,7 +66,8 @@ function ordenarPorAnio() {
 //---------- Crear el HTML de cada uno de los cards de los productos ----------------------------
 function cargarCardProducto(productos) {
     contenedorProductos.innerHTML = '';
-    for (const producto of productos) {
+    console.log(productos);
+    productos.map((producto) => {
 
         let divContenedor = document.createElement("div");
         divContenedor.classList.add("col-md-6", "col-lg-4");
@@ -88,5 +96,5 @@ function cargarCardProducto(productos) {
         btnAgregarCarrito.addEventListener('click', () => {
             agregarCarrito(producto.id)
         });
-    }
+    });
 }

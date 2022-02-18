@@ -158,8 +158,8 @@ a {
   .modal-carrito {
       position: relative;
       background-color: white;
-      min-width: 500px;
-      padding: 20px;
+      min-width: 60%;
+      padding: 3%;
       margin-top: -100%;
       transition: all .5s;
       overflow: auto;
@@ -176,14 +176,14 @@ a {
   justify-content: space-between;
   flex-direction: row;
   padding: 0% 10%;
-  font-size: 1rem;
+  font-size: 0.90rem;
 }
 
 .flex-r-end {
   display: flex;
   justify-content: right;
   padding: 2% 10%;
-  font-size: 1rem;
+  font-size: 0.90rem;
 }
 
 .btn-pagar{
@@ -191,3 +191,36 @@ a {
   justify-content: right;
   padding: 2% 10%;
 }
+
+/* --------------MEDIA QUERIES --------480px--------*/
+@media screen and (max-width: 480px) {
+  /* media carrito 480*/
+
+  /* media contact 480*/
+  .contact__map {
+    padding-top: 15%; }
+  /* media footer 480 */
+  .footer__form {
+    width: 65%; }
+  .footer__row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    height: 20%; }
+  .footer__social {
+    display: flex;
+    justify-content: center;
+    margin-top: 5%;
+    font-size: 1.5rem; }
+  .footer__firm {
+    font-size: smaller;
+    padding: 5%; }
+  .footer__form input {
+    height: 1.3rem; }
+  .footer__form button {
+    height: 1.5em;
+    line-height: 1em; }
+  .label-submit {
+    width: 100%;
+    font-size: smaller; } }
