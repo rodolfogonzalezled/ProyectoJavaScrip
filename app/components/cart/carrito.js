@@ -20,10 +20,10 @@ cerrarCarrito.addEventListener('click', () => {
     contenedorModal.classList.toggle('modal-active')
 })
 modalCarrito.addEventListener('click', (e) => {
-    e.stopPropagation()
+    e.stopPropagation();
 })
 contenedorModal.addEventListener('click', () => {
-    cerrarCarrito.click()
+    cerrarCarrito.click();
 })
 
 //-------------- Agregar al Carrito -------------------------------------------------------------------
@@ -131,6 +131,13 @@ const actualizarCantidad = (producto) => {
 const pagar = () => {
     if (carrito.length) {
         swal("Gracias por tu compra!", "Que lo disfrutes al máximo!", "success");
+        carritoContenedor.innerHTML = "";
+        descuentoMostrar.innerText = "";
+        contadorCarrito.innerText = "";
+        subtotalMostrar.innerText = 0;
+        totalMostrar.innerText = 0;
+        cerrarCarrito.click();
+        localStorage.removeItem('carrito');
     }
 }
 
