@@ -9,6 +9,7 @@ let contadorCarrito = document.getElementById('contadorCarrito');
 let carritoContenedor = document.getElementById("carritoContenedor");
 let contenedorModal = document.getElementById('modalContenedor');
 let modalCarrito = document.getElementById('modalCarrito');
+let btnPagar = document.getElementById("btnPagar");
 let carrito = [];
 let total = 0;
 
@@ -37,40 +38,10 @@ export default function agregarCarrito(idProducto) {
             actualizarCantidad(productoRepetido);
         } else {
             carrito.push(productoSeleccionado);
-            actualizarContadorCarrito();
             ajusteNegativoStock(productoSeleccionado);
-            carritoContenedor.innerHTML = "";
-            for (const producto of carrito) {
-                let divContenedor = document.createElement("div");
-                divContenedor.classList.add("flex-row");
-    
-                divContenedor.innerHTML = `
-                    <a id="btnBorrarProducto${producto.id}"> <i class="btn bi bi-trash"></i></a>
-                    <p>Juego: ${producto.nombre}</p>
-                    <p id='cantidad${producto.id}' class="pl">Cantidad: ${producto.cantidad}</p>
-                    <p>Precio: $ ${producto.precio}</p>
-                `;
-                carritoContenedor.appendChild(divContenedor);
-    
-                let btnBorrarProducto = document.getElementById(`btnBorrarProducto${producto.id}`);
-    
-                btnBorrarProducto.addEventListener('click', () => {
-                    producto.cantidad--;
-                    actualizarCantidad(producto);
-                    ajustePositivoStock(producto);
-
-                    if (producto.cantidad == 0) {
-                        btnBorrarProducto.parentElement.remove();
-                        carrito = carrito.filter(el => el.id != producto.id);
-                    }
-
-                    actualizarContadorCarrito();
-                    calcularTotal();
-                });
-            } 
+            pintarElementosCarrito(carrito); 
         }
-        actualizarContadorCarrito();
-        calcularTotal();
+        actualizaContadoryTotal();
     } 
     if (productoSeleccionado.stock == 0) {
         let btnAgregarCarrito = document.getElementById(`btnAgregarCarrito${idProducto}`)
@@ -79,8 +50,44 @@ export default function agregarCarrito(idProducto) {
     } 
 }
 
+export const actualizaContadoryTotal = ()  => {
+    actualizarContadorCarrito(carrito);
+    calcularTotal(carrito);
+}
+
+export const pintarElementosCarrito = () => {
+    carritoContenedor.innerHTML = "";
+    carrito.map((producto) => {
+        let divContenedor = document.createElement("div");
+        divContenedor.classList.add("flex-row");
+
+        divContenedor.innerHTML = `
+                    <a id="btnBorrarProducto${producto.id}"> <i class="btn bi bi-trash"></i></a>
+                    <p>Juego: ${producto.nombre}</p>
+                    <p id='cantidad${producto.id}' class="pl">Cantidad: ${producto.cantidad}</p>
+                    <p>Precio: $ ${producto.precio}</p>
+                `;
+        carritoContenedor.appendChild(divContenedor);
+
+        let btnBorrarProducto = document.getElementById(`btnBorrarProducto${producto.id}`);
+
+        btnBorrarProducto.addEventListener('click', () => {
+            producto.cantidad--;
+            actualizarCantidad(producto);
+            ajustePositivoStock(producto);
+
+            if (producto.cantidad == 0) {
+                btnBorrarProducto.parentElement.remove();
+                carrito = carrito.filter(el => el.id != producto.id);
+            }
+            actualizarContadorCarrito(carrito);
+            calcularTotal(carrito);
+        });
+    });
+}
+
 //------- Calcular el total ----------------------------------------------------------------------
-function calcularTotal() {
+const calcularTotal = (carrito) => {
     total = carrito.reduce((acc, el) => acc + el.precio * el.cantidad, 0); //Suma todos los precios de los elementos seleccionados
     subtotalMostrar.innerText = total;
     if ( carrito.reduce((acc, el) => acc + el.cantidad, 0) > 5) {
@@ -100,9 +107,9 @@ function calcularTotal() {
     totalMostrar.innerText = total;
 }
 
-function actualizarContadorCarrito() {
+const actualizarContadorCarrito = (carrito) => {
     contadorCarrito.textContent = carrito.length > 0 ? carrito.reduce((acc, el) => acc + el.cantidad, 0) : '';
-    ;
+    localStorage.setItem('carrito', JSON.stringify(carrito));
 }
 
 const ajusteNegativoStock = (producto) => {
@@ -120,3 +127,16 @@ const actualizarCantidad = (producto) => {
     let cantidad = document.getElementById(`cantidad${producto.id}`);
     cantidad.innerHTML = `<p id='cantidad${producto.id}'>Cantidad: ${producto.cantidad}</p>`;
 }
+
+const pagar = () => {
+    if (carrito.length) {
+        swal("Gracias por tu compra!", "Que lo disfrutes al máximo!", "success");
+    }
+}
+
+btnPagar.addEventListener('click', pagar);
+
+export const asignarStorageACarrito = (carritoStorage) => {
+    carrito = carritoStorage;
+}
+

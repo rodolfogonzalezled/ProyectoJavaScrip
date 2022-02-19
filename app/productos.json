@@ -110,7 +110,7 @@
         "cantidad": 1
     },
     { 
-        "id": 10, 
+        "id": 11, 
         "nombre": "Spiderman", 
         "precio": 4500, 
         "categoria": "accion", 
@@ -121,7 +121,7 @@
         "cantidad": 1
     },
     { 
-        "id": 10, 
+        "id": 12, 
         "nombre": "It Takes Two", 
         "precio": 7000, 
         "categoria": "simulacion", 
