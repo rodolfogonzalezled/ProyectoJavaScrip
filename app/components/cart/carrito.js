@@ -1,4 +1,5 @@
 import { productos } from "../../data/productos.js";
+import { toastEliminar } from "./eliminarProductoCarrito.js";
 
 let totalMostrar = document.getElementById("total");
 let subtotalMostrar = document.getElementById("subtotal");
@@ -30,7 +31,6 @@ contenedorModal.addEventListener('click', () => {
 export default function agregarCarrito(idProducto) {
     const productoSeleccionado = productos.find(el => el.id == idProducto);
     if (productoSeleccionado.stock >= 1) {
-        
         let productoRepetido = carrito.find(el => el.id == idProducto);
         if (productoRepetido) {
             productoRepetido.cantidad++;
@@ -82,6 +82,7 @@ export const pintarElementosCarrito = () => {
             }
             actualizarContadorCarrito(carrito);
             calcularTotal(carrito);
+            toastEliminar();
         });
     });
 }
@@ -146,4 +147,6 @@ btnPagar.addEventListener('click', pagar);
 export const asignarStorageACarrito = (carritoStorage) => {
     carrito = carritoStorage;
 }
+
+
 

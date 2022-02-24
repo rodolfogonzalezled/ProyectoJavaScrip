@@ -1,10 +1,9 @@
 //---------------------------------------------------------------------------------------------------------------
-//                   Desafio - RODOLFO GONZALEZ
+//                   Proyecto JavaScript - RODOLFO GONZALEZ
 //---------------------------------------------------------------------------------------------------------------
 import agregarCarrito, { asignarStorageACarrito, pintarElementosCarrito, actualizaContadoryTotal } from "./components/cart/carrito.js";
 import { productos } from "./data/productos.js";
-
-
+import { toastAgregar } from "./components/cart/agregarProductoCarrito.js";
 
 let inputBuscarNombre = document.getElementById("buscarNombre");
 let categoria = document.getElementById("categoria");
@@ -97,12 +96,10 @@ function cargarCardProducto(productos) {
         contenedorProductos.appendChild(divContenedor);
 
         let btnAgregarCarrito = document.getElementById(`btnAgregarCarrito${producto.id}`);
-
         btnAgregarCarrito.addEventListener('click', () => {
             agregarCarrito(producto.id)
+            toastAgregar();
         });
     });
 }
-
 //----------------------------------------------------------------
-
