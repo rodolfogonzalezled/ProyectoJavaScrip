@@ -1,7 +1,7 @@
 export const toastEliminar = () => {
     Toastify({
         text: "Unidad seleccionada ha sido eliminada del carrito correctamente",
-        duration: 2000,
+        duration: 1000,
         gravity: 'top',
         position: 'right',
         style: {

@@ -1,7 +1,7 @@
 export const toastAgregar = () => {
     Toastify({
         text: "Juego agregado al Carrito correctamente",
-        duration: 2000,
+        duration: 1000,
         gravity: 'top',
         position: 'right',
         style: {

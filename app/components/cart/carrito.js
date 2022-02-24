@@ -1,31 +1,16 @@
+//------------------------------ Carrrito ----------------------------------------------
 import { productos } from "../../data/productos.js";
+import { cerrarCarrito } from "../modal/modal.js";
 import { toastEliminar } from "./eliminarProductoCarrito.js";
 
 let totalMostrar = document.getElementById("total");
 let subtotalMostrar = document.getElementById("subtotal");
 let descuentoMostrar = document.getElementById("descuento");
-let abrirCarrito = document.getElementById('btnAbrirCarrito');
-let cerrarCarrito = document.getElementById('btnCerrarCarrito');
 let contadorCarrito = document.getElementById('contadorCarrito');
 let carritoContenedor = document.getElementById("carritoContenedor");
-let contenedorModal = document.getElementById('modalContenedor');
-let modalCarrito = document.getElementById('modalCarrito');
 let btnPagar = document.getElementById("btnPagar");
 let carrito = [];
 let total = 0;
-
-abrirCarrito.addEventListener('click', () => {
-    contenedorModal.classList.toggle('modal-active')
-})
-cerrarCarrito.addEventListener('click', () => {
-    contenedorModal.classList.toggle('modal-active')
-})
-modalCarrito.addEventListener('click', (e) => {
-    e.stopPropagation();
-})
-contenedorModal.addEventListener('click', () => {
-    cerrarCarrito.click();
-})
 
 //-------------- Agregar al Carrito -------------------------------------------------------------------
 export default function agregarCarrito(idProducto) {
@@ -137,7 +122,7 @@ const pagar = () => {
         contadorCarrito.innerText = "";
         subtotalMostrar.innerText = 0;
         totalMostrar.innerText = 0;
-        cerrarCarrito.click();
+        cerrarCarrito();
         localStorage.removeItem('carrito');
     }
 }
