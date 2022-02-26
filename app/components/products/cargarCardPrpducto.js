@@ -1,6 +1,5 @@
 //---------- Crear el HTML de cada uno de los cards de los productos ----------------------------
 import agregarCarrito, { asignarStorageACarrito, pintarElementosCarrito, actualizaContadoryTotal } from "../cart/carrito.js";
-import { toastAgregar } from "../cart/agregarProductoCarrito.js";
 
 let contenedorProductos = document.getElementById('productos');
 let carritoStorage = [];
@@ -47,4 +46,15 @@ const cargarStorageAlCarrito = () => {
     }
 }
 
+const toastAgregar = () => {
+    Toastify({
+        text: "Juego agregado al Carrito correctamente",
+        duration: 1000,
+        gravity: 'top',
+        position: 'right',
+        style: {
+            background: 'linear-gradient(to right, #008184, #00b09b)'
+        }
+    }).showToast();
+}
 //----------------------------------------------------------------

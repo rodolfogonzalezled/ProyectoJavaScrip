@@ -1,7 +1,6 @@
 //------------------------------ Carrrito ----------------------------------------------
 import { productos } from "../../data/productos.js";
 import { cerrarCarrito } from "../modal/modal.js";
-import { toastEliminar } from "./eliminarProductoCarrito.js";
 
 let totalMostrar = document.getElementById("total");
 let subtotalMostrar = document.getElementById("subtotal");
@@ -133,5 +132,14 @@ export const asignarStorageACarrito = (carritoStorage) => {
     carrito = carritoStorage;
 }
 
-
-
+const toastEliminar = () => {
+    Toastify({
+        text: "Unidad seleccionada ha sido eliminada del carrito correctamente",
+        duration: 1000,
+        gravity: 'top',
+        position: 'right',
+        style: {
+            background: 'linear-gradient(to right, #C70039, #F5150A)'
+            }
+    }).showToast();
+}
