@@ -48,12 +48,12 @@ const cargarStorageAlCarrito = () => {
 
 const toastAgregar = () => {
     Toastify({
-        text: "Juego agregado al Carrito correctamente",
+        text: "🛒 Producto agregado al Carrito correctamente",
         duration: 1000,
         gravity: 'top',
         position: 'right',
         style: {
-            background: 'linear-gradient(to right, #008184, #00b09b)'
+            background: 'linear-gradient(to right, #A1E1C9, #008184)'
         }
     }).showToast();
 }

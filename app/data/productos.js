@@ -9,7 +9,7 @@ const productos = [
         idioma: 'Español',
         imagen: './public/images/nba-2k22.jpg',
         stock: 3,
-        cantidad: 1
+        cantidad: 0
     },
     {
         id: 2,
@@ -20,7 +20,7 @@ const productos = [
         idioma: 'Español',
         imagen: './public/images/fifa22.jpg',
         stock: 5,
-        cantidad: 1
+        cantidad: 0
     },
     {
         id: 3,
@@ -31,7 +31,7 @@ const productos = [
         idioma: 'Inglés',
         imagen: './public/images/resident-evil-3.jpg',
         stock: 5,
-        cantidad: 1
+        cantidad: 0
     },
     {
         id: 4,
@@ -42,7 +42,7 @@ const productos = [
         idioma: 'Español',
         imagen: './public/images/sims4.jpg',
         stock: 3,
-        cantidad: 1
+        cantidad: 0
     },
     {
         id: 5,
@@ -53,7 +53,7 @@ const productos = [
         idioma: 'Español',
         imagen: './public/images/need-for-speed.jpg',
         stock: 8,
-        cantidad: 1
+        cantidad: 0
     },
     {
         id: 6,
@@ -64,7 +64,7 @@ const productos = [
         idioma: 'Español',
         imagen: './public/images/crash-ctr.jpg',
         stock: 4,
-        cantidad: 1
+        cantidad: 0
     },
     {
         id: 7,
@@ -75,7 +75,7 @@ const productos = [
         idioma: 'Español',
         imagen: './public/images/uncharted4.jpg',
         stock: 4,
-        cantidad: 1
+        cantidad: 0
     },
     {
         id: 8,
@@ -86,7 +86,7 @@ const productos = [
         idioma: 'Inglés',
         imagen: './public/images/horizon.jpg',
         stock: 4,
-        cantidad: 1
+        cantidad: 0
     },
     {
         id: 9,
@@ -97,7 +97,7 @@ const productos = [
         idioma: 'Español',
         imagen: './public/images/farcry6.jpg',
         stock: 5,
-        cantidad: 1
+        cantidad: 0
     },
     {
         id: 10,
@@ -108,7 +108,7 @@ const productos = [
         idioma: 'Inglés',
         imagen: './public/images/mortal-kombat.jpg',
         stock: 5,
-        cantidad: 1
+        cantidad: 0
     },
     {
         id: 11,
@@ -119,7 +119,7 @@ const productos = [
         idioma: 'Español',
         imagen: './public/images/spider-man.jpg',
         stock: 7,
-        cantidad: 1
+        cantidad: 0
     },
     {
         id: 12,
@@ -130,7 +130,7 @@ const productos = [
         idioma: 'Inglés',
         imagen: './public/images/it-takes-two.jpg',
         stock: 2,
-        cantidad: 1
+        cantidad: 0
     },
 ];
 

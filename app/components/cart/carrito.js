@@ -12,7 +12,9 @@ let carrito = [];
 let total = 0;
 
 //-------------- Agregar al Carrito -------------------------------------------------------------------
+
 export default function agregarCarrito(idProducto) {
+    btnPagar.disabled = false;
     const productoSeleccionado = productos.find(el => el.id == idProducto);
     if (productoSeleccionado.stock >= 1) {
         let productoRepetido = carrito.find(el => el.id == idProducto);
@@ -21,9 +23,10 @@ export default function agregarCarrito(idProducto) {
             ajusteNegativoStock(productoRepetido);
             actualizarCantidad(productoRepetido);
         } else {
-            carrito.push(productoSeleccionado);
             ajusteNegativoStock(productoSeleccionado);
-            pintarElementosCarrito(carrito); 
+            ajustePositivoCantidad(productoSeleccionado);
+            carrito.push(productoSeleccionado);
+            pintarElementosCarrito(); 
         }
         actualizaContadoryTotal();
     } 
@@ -67,6 +70,7 @@ export const pintarElementosCarrito = () => {
             actualizarContadorCarrito(carrito);
             calcularTotal(carrito);
             toastEliminar();
+            !carrito.length && (btnPagar.disabled = true);
         });
     });
 }
@@ -108,6 +112,10 @@ const ajustePositivoStock = (producto) => {
     btnAgregarCarrito.disabled = false;
 }
 
+const ajustePositivoCantidad = (producto) => {
+    producto.cantidad++;
+}
+
 const actualizarCantidad = (producto) => {
     let cantidad = document.getElementById(`cantidad${producto.id}`);
     cantidad.innerHTML = `<p id='cantidad${producto.id}'>Cantidad: ${producto.cantidad}</p>`;
@@ -123,10 +131,10 @@ const pagar = () => {
         totalMostrar.innerText = 0;
         cerrarCarrito();
         localStorage.removeItem('carrito');
+        btnPagar.disabled = true;
+        carrito = [];
     }
 }
-
-btnPagar.addEventListener('click', pagar);
 
 export const asignarStorageACarrito = (carritoStorage) => {
     carrito = carritoStorage;
@@ -134,7 +142,7 @@ export const asignarStorageACarrito = (carritoStorage) => {
 
 const toastEliminar = () => {
     Toastify({
-        text: "Unidad seleccionada ha sido eliminada del carrito correctamente",
+        text: "❌ Unidad seleccionada ha sido eliminada del carrito correctamente",
         duration: 1000,
         gravity: 'top',
         position: 'right',
@@ -143,3 +151,5 @@ const toastEliminar = () => {
             }
     }).showToast();
 }
+
+btnPagar.addEventListener('click', pagar);
