@@ -1,6 +1,8 @@
-import { productos } from "../../data/productos.js";
 import { cargarCardProducto } from "../products/cargarCardPrpducto.js";
+import obtenerDatos from "../../data/productos.js"
 
+let productos = [];
+obtenerDatos().then(data => productos = data);
 let inputBuscarNombre = document.getElementById("buscarNombre");
 let categoria = document.getElementById("categoria");
 let selectOrdenar = document.getElementById("ordenar");
@@ -17,8 +19,12 @@ function buscarProducto() {
 
 //-------------- filtrar por categoria -----------------------------------------------------------
 function filtrarCategoria() {
-    const productosEncontrados = productos.filter(el => el.categoria == categoria.value);
-    cargarCardProducto(productosEncontrados);
+    if (categoria.value == "todos") {
+        cargarCardProducto(productos);
+    } else {
+        const productosEncontrados = productos.filter(el => el.categoria == categoria.value);
+        cargarCardProducto(productosEncontrados);
+    }
 }
 
 //-------------- Ordenar ------------------------------------------------------------------------

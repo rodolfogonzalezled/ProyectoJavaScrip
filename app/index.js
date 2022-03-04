@@ -1,7 +1,8 @@
 //---------------------------------------------------------------------------------------------------------------
 //                   Proyecto JavaScript - RODOLFO GONZALEZ
 //---------------------------------------------------------------------------------------------------------------
-import { productos } from "./data/productos.js";
 import { cargarCardProducto } from "./components/products/cargarCardPrpducto.js";
+import obtenerDatos from "./data/productos.js"
 
-cargarCardProducto(productos);
+obtenerDatos()
+    .then(data => cargarCardProducto(data));

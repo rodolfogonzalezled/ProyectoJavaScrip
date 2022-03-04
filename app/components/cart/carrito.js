@@ -1,7 +1,9 @@
 //------------------------------ Carrrito ----------------------------------------------
-import { productos } from "../../data/productos.js";
+import obtenerDatos from "../../data/productos.js";
 import { cerrarCarrito } from "../modal/modal.js";
 
+let productos = [];
+obtenerDatos().then(data => productos = data);
 let totalMostrar = document.getElementById("total");
 let subtotalMostrar = document.getElementById("subtotal");
 let descuentoMostrar = document.getElementById("descuento");
