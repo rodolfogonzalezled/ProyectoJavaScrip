@@ -124,6 +124,7 @@ const actualizarCantidad = (producto) => {
 }
 
 const pagar = () => {
+    debugger;
     if (carrito.length) {
         swal("Gracias por tu compra!", "Que lo disfrutes al máximo!", "success");
         carritoContenedor.innerHTML = "";
@@ -134,6 +135,7 @@ const pagar = () => {
         cerrarCarrito();
         localStorage.removeItem('carrito');
         btnPagar.disabled = true;
+        carrito.forEach(el => el.cantidad = 0);
         carrito = [];
     }
 }
