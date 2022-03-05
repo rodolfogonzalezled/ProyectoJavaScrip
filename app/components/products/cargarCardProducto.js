@@ -1,5 +1,6 @@
 //---------- Crear el HTML de cada uno de los cards de los productos ----------------------------
 import agregarCarrito, { asignarStorageACarrito, pintarElementosCarrito, actualizaContadoryTotal } from "../cart/carrito.js";
+import { toastSuccess } from "../cart/utils/toast.js";
 
 let contenedorProductos = document.getElementById('productos');
 let carritoStorage = [];
@@ -32,29 +33,18 @@ export function cargarCardProducto(productos) {
         let btnAgregarCarrito = document.getElementById(`btnAgregarCarrito${producto.id}`);
         btnAgregarCarrito.addEventListener('click', () => {
             agregarCarrito(producto.id)
-            toastAgregar();
+            toastSuccess("🛒 Producto agregado al Carrito correctamente");
         });
     });
 }
 
 const cargarStorageAlCarrito = () => {
     if (localStorage.getItem("carrito")) {
+        document.getElementById("btnPagar").disabled = false;
         carritoStorage = JSON.parse(localStorage.getItem("carrito"));
         asignarStorageACarrito(carritoStorage);
         pintarElementosCarrito();
         actualizaContadoryTotal();
     }
-}
-
-const toastAgregar = () => {
-    Toastify({
-        text: "🛒 Producto agregado al Carrito correctamente",
-        duration: 1000,
-        gravity: 'top',
-        position: 'right',
-        style: {
-            background: 'linear-gradient(to right, #A1E1C9, #008184)'
-        }
-    }).showToast();
 }
 //----------------------------------------------------------------

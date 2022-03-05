@@ -1,4 +1,4 @@
-import { cargarCardProducto } from "../products/cargarCardPrpducto.js";
+import { cargarCardProducto } from "../products/cargarCardProducto.js";
 import obtenerDatos from "../../data/productos.js"
 
 let productos = [];

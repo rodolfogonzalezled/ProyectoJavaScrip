@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------------------------------------------
 //                   Proyecto JavaScript - RODOLFO GONZALEZ
 //---------------------------------------------------------------------------------------------------------------
-import { cargarCardProducto } from "./components/products/cargarCardPrpducto.js";
+import { cargarCardProducto } from "./components/products/cargarCardProducto.js";
 import obtenerDatos from "./data/productos.js"
 
 obtenerDatos()

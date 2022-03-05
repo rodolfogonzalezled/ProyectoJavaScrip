@@ -1,9 +1,9 @@
 //------------------------------ Carrrito ----------------------------------------------
 import obtenerDatos from "../../data/productos.js";
 import { cerrarCarrito } from "../modal/modal.js";
+import { toastError } from "./utils/toast.js";
 
 let productos = [];
-obtenerDatos().then(data => productos = data);
 let totalMostrar = document.getElementById("total");
 let subtotalMostrar = document.getElementById("subtotal");
 let descuentoMostrar = document.getElementById("descuento");
@@ -13,10 +13,12 @@ let btnPagar = document.getElementById("btnPagar");
 let carrito = [];
 let total = 0;
 
+obtenerDatos().then(data => productos = data);
+
 //-------------- Agregar al Carrito -------------------------------------------------------------------
 
 export default function agregarCarrito(idProducto) {
-    btnPagar.disabled = false;
+    deshabilitarBtnPpagar(false);
     const productoSeleccionado = productos.find(el => el.id == idProducto);
     if (productoSeleccionado.stock >= 1) {
         let productoRepetido = carrito.find(el => el.id == idProducto);
@@ -71,8 +73,8 @@ export const pintarElementosCarrito = () => {
             }
             actualizarContadorCarrito(carrito);
             calcularTotal(carrito);
-            toastEliminar();
-            !carrito.length && (btnPagar.disabled = true);
+            toastError("❌ Unidad seleccionada ha sido eliminada del carrito correctamente");
+            !carrito.length && (deshabilitarBtnPpagar(true));
         });
     });
 }
@@ -123,37 +125,34 @@ const actualizarCantidad = (producto) => {
     cantidad.innerHTML = `<p id='cantidad${producto.id}'>Cantidad: ${producto.cantidad}</p>`;
 }
 
-const pagar = () => {
-    debugger;
-    if (carrito.length) {
-        swal("Gracias por tu compra!", "Que lo disfrutes al máximo!", "success");
-        carritoContenedor.innerHTML = "";
-        descuentoMostrar.innerText = "";
-        contadorCarrito.innerText = "";
-        subtotalMostrar.innerText = 0;
-        totalMostrar.innerText = 0;
-        cerrarCarrito();
-        localStorage.removeItem('carrito');
-        btnPagar.disabled = true;
-        carrito.forEach(el => el.cantidad = 0);
-        carrito = [];
-    }
-}
-
 export const asignarStorageACarrito = (carritoStorage) => {
     carrito = carritoStorage;
 }
 
-const toastEliminar = () => {
-    Toastify({
-        text: "❌ Unidad seleccionada ha sido eliminada del carrito correctamente",
-        duration: 1000,
-        gravity: 'top',
-        position: 'right',
-        style: {
-            background: 'linear-gradient(to right, #C70039, #F5150A)'
-            }
-    }).showToast();
+btnPagar.addEventListener('click', () => {
+    if (carrito.length) {
+        swal("Gracias por tu compra!", "Que lo disfrutes al máximo!", "success");
+        limpiarCarrito();
+        reiniciarModalCarrito();
+        cerrarCarrito();
+    }
+});
+
+const limpiarCarrito = () => {
+    localStorage.removeItem('carrito');
+    carrito.forEach(el => el.cantidad = 0);
+    carrito = [];
 }
 
-btnPagar.addEventListener('click', pagar);
+const reiniciarModalCarrito = () => {
+    carritoContenedor.innerHTML = "";
+    descuentoMostrar.innerText = "";
+    contadorCarrito.innerText = "";
+    subtotalMostrar.innerText = 0;
+    totalMostrar.innerText = 0;
+    deshabilitarBtnPpagar(true);
+}
+
+const deshabilitarBtnPpagar = (deshabilitar) => {
+    btnPagar.disabled = deshabilitar;
+}
