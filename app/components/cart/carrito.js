@@ -7,7 +7,7 @@ let productos = [];
 let totalMostrar = document.getElementById("total");
 let subtotalMostrar = document.getElementById("subtotal");
 let descuentoMostrar = document.getElementById("descuento");
-let contadorCarrito = document.getElementById('contadorCarrito');
+let contadorCarrito = document.getElementsByClassName('contadorCarrito');
 let carritoContenedor = document.getElementById("carritoContenedor");
 let btnPagar = document.getElementById("btnPagar");
 let carrito = [];
@@ -71,7 +71,7 @@ export const pintarElementosCarrito = () => {
                 btnBorrarProducto.parentElement.remove();
                 carrito = carrito.filter(el => el.id != producto.id);
             }
-            actualizarContadorCarrito(carrito);
+            actualizaContadoryTotal();
             calcularTotal(carrito);
             toastError("❌ Unidad seleccionada ha sido eliminada del carrito correctamente");
             !carrito.length && (deshabilitarBtnPpagar(true));
@@ -101,7 +101,9 @@ const calcularTotal = (carrito) => {
 }
 
 const actualizarContadorCarrito = (carrito) => {
-    contadorCarrito.textContent = carrito.length > 0 ? carrito.reduce((acc, el) => acc + el.cantidad, 0) : '';
+    for (let i = 0; i < contadorCarrito.length; i++) {
+        contadorCarrito[i].textContent = carrito.length > 0 ? carrito.reduce((acc, el) => acc + el.cantidad, 0) : '';
+    }
     localStorage.setItem('carrito', JSON.stringify(carrito));
 }
 
@@ -145,9 +147,11 @@ const limpiarCarrito = () => {
 }
 
 const reiniciarModalCarrito = () => {
+    for (let i = 0; i < contadorCarrito.length; i++) {
+        contadorCarrito[i].innerText = "";
+    }
     carritoContenedor.innerHTML = "";
     descuentoMostrar.innerText = "";
-    contadorCarrito.innerText = "";
     subtotalMostrar.innerText = 0;
     totalMostrar.innerText = 0;
     deshabilitarBtnPpagar(true);
