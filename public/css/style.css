@@ -239,6 +239,9 @@ a {
       color: white;
       cursor: pointer;
       padding: 10px;
-      border-radius: 50px; }
-      #button-to-top:hover {
-        background-color: #555;
+      border-radius: 50px; 
+    }
+
+    #button-to-top:hover {
+      background-color: #555;
+    }
