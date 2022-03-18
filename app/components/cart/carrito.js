@@ -1,5 +1,5 @@
 //------------------------------ Carrrito ----------------------------------------------
-import obtenerDatos from "../../data/productos.js";
+import obtenerProductos from "../../data/obtenerProductos.js";
 import { cerrarCarrito } from "../modal/modal.js";
 import { toastError } from "./utils/toast.js";
 
@@ -13,12 +13,12 @@ let btnPagar = document.getElementById("btnPagar");
 let carrito = [];
 let total = 0;
 
-obtenerDatos().then(data => productos = data);
+obtenerProductos().then(data => productos = data);
 
 //-------------- Agregar al Carrito -------------------------------------------------------------------
 
 export default function agregarCarrito(idProducto) {
-    deshabilitarBtnPpagar(false);
+    deshabilitarBtnPagar(false);
     const productoSeleccionado = productos.find(el => el.id == idProducto);
     if (productoSeleccionado.stock >= 1) {
         let productoRepetido = carrito.find(el => el.id == idProducto);
@@ -74,7 +74,7 @@ export const pintarElementosCarrito = () => {
             actualizaContadoryTotal();
             calcularTotal(carrito);
             toastError("❌ Unidad seleccionada ha sido eliminada del carrito correctamente");
-            !carrito.length && (deshabilitarBtnPpagar(true));
+            !carrito.length && (deshabilitarBtnPagar(true));
         });
     });
 }
@@ -83,7 +83,7 @@ export const pintarElementosCarrito = () => {
 const calcularTotal = (carrito) => {
     total = carrito.reduce((acc, el) => acc + el.precio * el.cantidad, 0); //Suma todos los precios de los elementos seleccionados
     subtotalMostrar.innerText = total;
-    if ( carrito.reduce((acc, el) => acc + el.cantidad, 0) > 5) {
+    if (carrito.reduce((acc, el) => acc + el.cantidad, 0) > 5) {
         descuentoMostrar.innerText = '¡FELICIDADES! Obtuviste un descuento del 20%';
         descuentoMostrar.classList.remove("ocultar");
         descuentoMostrar.classList.add("flex-row", "flex-r-end");
@@ -154,9 +154,9 @@ const reiniciarModalCarrito = () => {
     descuentoMostrar.innerText = "";
     subtotalMostrar.innerText = 0;
     totalMostrar.innerText = 0;
-    deshabilitarBtnPpagar(true);
+    deshabilitarBtnPagar(true);
 }
 
-const deshabilitarBtnPpagar = (deshabilitar) => {
+const deshabilitarBtnPagar = (deshabilitar) => {
     btnPagar.disabled = deshabilitar;
 }

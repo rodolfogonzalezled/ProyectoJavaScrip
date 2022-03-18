@@ -1,8 +1,8 @@
 import { cargarCardProducto } from "../products/cargarCardProducto.js";
-import obtenerDatos from "../../data/productos.js"
+import obtenerProductos from "../../data/obtenerProductos.js"
 
 let productos = [];
-obtenerDatos().then(data => productos = data);
+obtenerProductos().then(data => productos = data);
 let inputBuscarNombre = document.getElementById("buscarNombre");
 let categoria = document.getElementById("categoria");
 let selectOrdenar = document.getElementById("ordenar");

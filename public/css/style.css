@@ -226,7 +226,7 @@ a {
     font-size: smaller; } }
 
 
-    #button-to-top {
+    #btnTop {
       display: none;
       position: fixed;
       bottom: 20px;
@@ -242,6 +242,6 @@ a {
       border-radius: 50px; 
     }
 
-    #button-to-top:hover {
+    #btnTop:hover {
       background-color: #555;
     }

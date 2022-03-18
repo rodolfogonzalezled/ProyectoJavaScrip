@@ -1,6 +1,7 @@
 <!--------------------------- Proyecto final de JavaScript - CoderHouse ---------------------------->
+# Proyecto JavaScript #
 
-<!--------------------------------------- Funcionalidades: ----------------------------------------->
+Website simulando una tienda de juegos de consolas, aplicando las siguientes funcionalidades:
 
 - Productos cargados dinamicamente de un .JSON local (simulando conexión con API)
 - Filtro de Busqueda por Nombre y Categoria.

@@ -1,4 +1,4 @@
-export default function obtenerDatos() {
+export default function obtenerProductos() {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
             resolve(

@@ -21,3 +21,15 @@ export const toastSuccess = (mensaje) => {
         }
     }).showToast();
 }
+
+export const toastSuscription = (mensaje) => {
+    Toastify({
+        text: mensaje,
+        duration: 1000,
+        gravity: 'top',
+        position: 'center',
+        style: {
+            background: 'linear-gradient(to right, #A1E1C9, #008184)'
+        }
+    }).showToast();
+}
